@@ -24,6 +24,8 @@ namespace AntDesign
 
         public ButtonSize Size { get; set; } = ButtonSize.Default;
 
+        public string Class { get; set; }
+
         public string Icon { get; set; }
 
         public bool Disabled { get; set; }
