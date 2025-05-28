@@ -50,6 +50,7 @@
                         Button innerBtnRef = null;
                         var children = props.ChildContent!.Value;
                         RenderFragment compontent = (@<Button @ref="@innerBtnRef"
+                                                              Class="@props.Class"
                                                               OnClick="@onClickEvent"
                                                               Block="@props.Block"
                                                               Ghost="@props.Ghost"
