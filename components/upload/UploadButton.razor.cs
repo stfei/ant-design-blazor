@@ -77,6 +77,7 @@ namespace AntDesign.Internal
         private DotNetObjectReference<UploadButton> _currentInstance;
 
         private string _fileId = Guid.NewGuid().ToString();
+        internal string Fileid => _fileId;
 
         private bool _disabled;
 
