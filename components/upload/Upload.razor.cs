@@ -260,6 +260,10 @@ namespace AntDesign
         public UploadTrigger Trigger { get; set; } = UploadTrigger.Click;
 
         private UploadButton _uploadButton;
+        /// <summary>
+        /// 内部的上传input组件 id
+        /// </summary>
+        public string FileId => _uploadButton.Fileid;
 
         private bool IsText => ListType == UploadListType.Text;
 
