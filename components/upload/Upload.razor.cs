@@ -325,7 +325,7 @@ namespace AntDesign
         {
             if (UseManuallyMode)
             {
-                var fileIds = FileList.Select(x => x.Id).ToList();
+                var fileIds = FileList.Where(x => x.State == UploadState.Waiting).Select(x => x.Id).ToList();
                 await _uploadButton.StartUpload(fileIds);
             }
         }
