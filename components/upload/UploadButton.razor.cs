@@ -113,6 +113,10 @@ namespace AntDesign.Internal
             if (firstRender && !Disabled && Upload?.Drag == false && !string.IsNullOrWhiteSpace(Action))
             {
                 await JSRuntime.InvokeVoidAsync(JSInteropConstants.AddFileClickEventListener, _btn);
+                if (Upload.Pastable)
+                {
+                    await JSRuntime.InvokeVoidAsync(JSInteropConstants.AddPasteEventListener, Upload.PasteElementId, _fileId);
+                }
             }
 
             await base.OnAfterRenderAsync(firstRender);
@@ -123,10 +127,16 @@ namespace AntDesign.Internal
             if (Disabled)
             {
                 await JSRuntime.InvokeVoidAsync(JSInteropConstants.RemoveFileClickEventListener, _btn);
+                await JSRuntime.InvokeVoidAsync(JSInteropConstants.RemovePasteEventListener, Upload.PasteElementId, _fileId);
+
             }
             else
             {
                 await JSRuntime.InvokeVoidAsync(JSInteropConstants.AddFileClickEventListener, _btn);
+                if (Upload.Pastable)
+                {
+                    await JSRuntime.InvokeVoidAsync(JSInteropConstants.AddPasteEventListener, Upload.PasteElementId, _fileId);
+                }
             }
         }
 
@@ -331,7 +341,11 @@ namespace AntDesign.Internal
 
         protected override void Dispose(bool disposing)
         {
-            InvokeAsync(async () => await JSRuntime.InvokeVoidAsync(JSInteropConstants.RemoveFileClickEventListener, _btn));
+            InvokeAsync(async () =>
+            {
+                await JSRuntime.InvokeVoidAsync(JSInteropConstants.RemoveFileClickEventListener, _btn);
+                await JSRuntime.InvokeVoidAsync(JSInteropConstants.RemovePasteEventListener, Upload.PasteElementId, _fileId);
+            });
 
             base.Dispose(disposing);
         }

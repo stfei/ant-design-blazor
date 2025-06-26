@@ -249,6 +249,16 @@ namespace AntDesign
         /// </summary>
         [Parameter]
         public bool UseManuallyMode { get; set; } = false;
+        /// <summary>
+        /// 是否粘贴上传
+        /// </summary>
+        [Parameter]
+        public bool Pastable { get; set; } = false;
+        /// <summary>
+        /// 粘贴区域元素(为空时事件被插入到全局document,指定值Pastable自动为true)
+        /// </summary>
+        [Parameter]
+        public string PasteElementId { get; set; } = null;
 
         private UploadButton _uploadButton;
         /// <summary>
@@ -287,6 +297,11 @@ namespace AntDesign
                 .If($"{PrefixCls}-list-rtl", () => RTL);
 
             FileList.InsertRange(0, DefaultFileList);
+
+            if (!string.IsNullOrWhiteSpace(PasteElementId))
+            {
+                Pastable = true;
+            }
         }
 
         private void HandleDrag(DragEventArgs args)
