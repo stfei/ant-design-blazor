@@ -1,0 +1,57 @@
+<Upload Action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
+Name="files"
+        Pastable
+        OnSingleCompleted="OnSingleCompleted">
+    <Button Icon="upload">
+        <span>Paste or click to upload</span>
+    </Button>
+</Upload>
+<br/>
+<span id="@_pasteElementId" class="pasteElement" tabindex="0">
+    <Upload  Action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
+            Name="files"            
+            PasteElementId="@_pasteElementId"
+            OnSingleCompleted="OnSingleCompleted">
+        <Button Icon="upload">
+            <span>Paste or click to upload</span>
+        </Button>
+    </Upload>
+    <p class="ant -upload-text">Ctrl+V Paste upload</p>
+    <p class="ant-upload-hint">
+        可以使用Ctrl+V粘贴图片到这里进行上传,点击激活这个区域后有效<br />
+    </p>
+</span>
+<style>
+    .pasteElement{
+        padding: 10px;
+        border: 1px solid #ccc;
+        display:grid;
+    }
+    .pasteElement:focus-within{
+        border: 1px solid  var(--ant-primary-color);
+    }
+</style>
+@code {
+    string _pasteElementId = Guid.NewGuid().ToString("N");
+
+    void OnSingleCompleted(UploadInfo fileinfo)
+    {
+        if (fileinfo.File.State == UploadState.Success)
+        {
+            var result = fileinfo.File.GetResponse<ResponseModel>();
+            fileinfo.File.Url = result.url;
+        }
+    }
+
+    public class ResponseModel
+    {
+        public string name { get; set; }
+
+        public string status { get; set; }
+
+        public string url { get; set; }
+
+        public string thumbUrl { get; set; }
+    }
+
+}

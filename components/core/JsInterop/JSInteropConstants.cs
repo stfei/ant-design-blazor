@@ -64,6 +64,9 @@ namespace AntDesign
         public static string UploadFile => UploadComponentHelper.UploadFile;
         public static string GetFileInfo => UploadComponentHelper.GetFileInfo;
 
+        public static string AddPasteEventListener => UploadComponentHelper.AddPasteEventListener;
+        public static string RemovePasteEventListener => UploadComponentHelper.RemovePasteEventListener;
+
         #endregion upload
 
         #region download
@@ -298,6 +301,9 @@ namespace AntDesign
             public static string ClearFile => $"{FUNC_PREFIX}clearFile";
             public static string UploadFile => $"{FUNC_PREFIX}uploadFile";
             public static string GetFileInfo => $"{FUNC_PREFIX}getFileInfo";
+
+            public static string AddPasteEventListener=> $"{FUNC_PREFIX}addPasteEventListener";
+            public static string RemovePasteEventListener => $"{FUNC_PREFIX}removePasteEventListener";
         }
 
         public static class DownloadComponentHelper
