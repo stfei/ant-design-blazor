@@ -1715,9 +1715,6 @@
   "Whether the value is in specified values": {
     "Translated": "该值是否在指定值内"
   },
-  "Validate rule for child elements. Valid <code>AntDesign.FormValidationRule.Type</code>s: Array, Object (<code>FormItem</code> not supported now)": {
-    "Translated": "验证子元素的规则。有效的 <code>AntDesign.FormValidationRule.Type</code>：数组、对象（现在不支持 <code>FormItem</code>）"
-  },
   "Custom validation function": {
     "Translated": "自定义验证函数"
   },
@@ -3995,9 +3992,6 @@
   "Use CollapsedChanged instead": {
     "Translated": "请改用 CollapsedChanged"
   },
-  "Dynamically load mention options for display when the user types a value after the @ symbol": {
-    "Translated": "动态加载提及选项，以便在用户在 @ 符号后键入值时显示"
-  },
   "Header content": {
     "Translated": "标题内容"
   },
@@ -4381,9 +4375,6 @@
   },
   "Customize the empty template when the table is empty": {
     "Translated": "自定义表为空时的空模板"
-  },
-  "Specify the identifier of each row": {
-    "Translated": "指定每行的标识符"
   },
   "Set the field filter type resolver": {
     "Translated": "设置字段筛选条件类型解析程序"
