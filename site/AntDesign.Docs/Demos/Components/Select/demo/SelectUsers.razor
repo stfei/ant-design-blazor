@@ -3,12 +3,20 @@
 		Style="width: 120px;"
 		TItemValue="string"
 		TItem="string"
-		Loading>
+        Loading="_loading">
 	<SelectOptions>
 		<SelectOption TItemValue="string" TItem="string" Value="@("lucy")" Label="Lucy" />
 	</SelectOptions>
 </Select>
+<Button OnClick="SetLoading">loading</Button>
 @code
 {
-	string _selectedValue;
+    string _selectedValue;
+    bool _loading = true;
+
+    void SetLoading()
+    {
+        _loading = !_loading;
+      
+    }
 }

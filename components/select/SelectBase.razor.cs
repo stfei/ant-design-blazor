@@ -84,7 +84,7 @@ namespace AntDesign
         protected Func<TItem, TItemValue> _getValue;
         protected Action<TItem, TItemValue> _setValue;
 
-
+        private bool _loading;
         private string _labelName;
         private string _valueName;
 
@@ -143,7 +143,18 @@ namespace AntDesign
         /// Show loading indicator. You have to write the loading logic on your own.
         /// </summary>
         [Parameter]
-        public bool Loading { get; set; }
+        public bool Loading
+        {
+            get => _loading;
+            set
+            {
+                _loading = value;
+                if (HasSelectOptions)
+                {
+                    _selectContent.RefreshComponentState();
+                }
+            }
+        }
 
         /// <summary>
         /// Controlled open state of dropdown.

@@ -91,6 +91,7 @@ namespace AntDesign.Select.Internal
         private bool _firstRender;
 
         private bool _compositionInputting;
+        private SelectSuffixIcon<TItemValue, TItem> _selectSuffixIcon;
 
         protected override void OnInitialized()
         {
@@ -100,6 +101,12 @@ namespace AntDesign.Select.Internal
             }
             _isInitialized = true;
             SetSuppressInput();
+        }
+        public void RefreshComponentState()
+        {
+#if NET10_0_OR_GREATER
+            _selectSuffixIcon.Refresh();
+#endif
         }
 
         protected override async Task OnAfterRenderAsync(bool firstRender)
