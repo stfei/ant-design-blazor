@@ -112,7 +112,7 @@ namespace AntDesign.Internal
         {
             if (firstRender && !Disabled)
             {
-                if (Upload?.Drag == false && !string.IsNullOrWhiteSpace(Action))
+                if (!string.IsNullOrWhiteSpace(Action))
                 {
                     await AddEventListener();
                 }
@@ -135,17 +135,29 @@ namespace AntDesign.Internal
 
         private async Task AddEventListener()
         {
-            if (Upload?.Trigger == UploadTrigger.Click)
-                await JSRuntime.InvokeVoidAsync(JSInteropConstants.AddFileClickEventListener, _btn);
-            else
+            if (Upload?.Drag == false)
+            {
+                if (Upload?.Trigger == UploadTrigger.Click)
+                    await JSRuntime.InvokeVoidAsync(JSInteropConstants.AddFileClickEventListener, _btn);
+                else
+                    await JSRuntime.InvokeVoidAsync(JSInteropConstants.AddPasteEventListener, _btn, _file, _currentInstance);
+            }
+
+            if (Upload?.Pastable ?? false)
                 await JSRuntime.InvokeVoidAsync(JSInteropConstants.AddPasteEventListener, _btn, _file, _currentInstance);
         }
 
         private async Task RemoveEventListener()
         {
-            if (Upload?.Trigger == UploadTrigger.Click)
-                await JSRuntime.InvokeVoidAsync(JSInteropConstants.RemoveFileClickEventListener, _btn);
-            else
+            if (Upload?.Drag == false)
+            {
+                if (Upload?.Trigger == UploadTrigger.Click)
+                    await JSRuntime.InvokeVoidAsync(JSInteropConstants.RemoveFileClickEventListener, _btn);
+                else
+                    await JSRuntime.InvokeVoidAsync(JSInteropConstants.RemovePasteEventListener, _btn);
+            }
+
+            if (Upload?.Pastable ?? false)
                 await JSRuntime.InvokeVoidAsync(JSInteropConstants.RemovePasteEventListener, _btn);
         }
 

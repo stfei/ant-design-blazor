@@ -1,14 +1,26 @@
 @inject IMessageService _message
 @inject IJSRuntime JS
 
+<Divider>文本框粘贴事件</Divider>
 <Upload @ref="upload"
         Action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
         Name="files"
         Defer="true"
         @bind-FileList="fileList"
-		ListType="UploadListType.Picture"
+        ListType="UploadListType.Picture"
         Trigger="UploadTrigger.Paste">
     <TextArea Placeholder="Paste files here (Ctrl+V)" />
+</Upload>
+
+<Divider>页面粘贴事件</Divider>
+<Upload Action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
+        Name="files2"
+        Pastable
+        @bind-FileList="fileList2"
+        Defer>
+    <Button Icon="upload">
+        <span>Page Paste or click to upload</span>
+    </Button>
 </Upload>
 
 <Button Type="ButtonType.Primary" OnClick="HandleUpload" Disabled="!CanUpload">Start Upload</Button>
@@ -18,10 +30,11 @@
     Upload upload;
 
     List<UploadFileItem> fileList = [];
+    List<UploadFileItem> fileList2 = [];
     bool CanUpload => fileList?.Any(x => x.State == UploadState.Waiting) ?? false;
 
     async Task HandleUpload()
     {
         await upload.StartUpload();
     }
-} 
+}
