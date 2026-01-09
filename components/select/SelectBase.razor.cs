@@ -149,10 +149,7 @@ namespace AntDesign
             set
             {
                 _loading = value;
-                if (HasSelectOptions)
-                {
-                    _selectContent.RefreshComponentState();
-                }
+                _selectContent?.RefreshComponentState();
             }
         }
 
