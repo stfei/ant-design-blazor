@@ -258,6 +258,11 @@ namespace AntDesign
         [PublicApi("1.5.0")]
         [Parameter]
         public UploadTrigger Trigger { get; set; } = UploadTrigger.Click;
+        /// <summary>
+        /// 是否粘贴上传(由于1.5增加了Trigger点击和粘贴只能二选一，这里UploadTrigger.Click还要粘贴的情况)
+        /// </summary>
+        [Parameter]
+        public bool Pastable { get; set; } = false;       
 
         private UploadButton _uploadButton;
         /// <summary>
