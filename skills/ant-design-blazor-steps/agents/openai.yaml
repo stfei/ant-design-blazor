@@ -1,0 +1,4 @@
+interface:
+  display_name: "Ant Design Blazor Steps"
+  short_description: "比较多种关键 Razor 用法并实现 Ant Design Blazor Steps 组件"
+  default_prompt: "使用 $ant-design-blazor-steps，比较内置的多种用法后选择合适模式并生成 Steps 组件代码。"

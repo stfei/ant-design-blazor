@@ -1,0 +1,4 @@
+interface:
+  display_name: "Ant Design Blazor Skeleton"
+  short_description: "比较多种关键 Razor 用法并实现 Ant Design Blazor Skeleton 组件"
+  default_prompt: "使用 $ant-design-blazor-skeleton，比较内置的多种用法后选择合适模式并生成 Skeleton 组件代码。"

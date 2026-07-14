@@ -1,0 +1,4 @@
+interface:
+  display_name: "Ant Design Blazor Affix"
+  short_description: "比较多种关键 Razor 用法并实现 Ant Design Blazor Affix 组件"
+  default_prompt: "使用 $ant-design-blazor-affix，比较内置的多种用法后选择合适模式并生成 Affix 组件代码。"

@@ -1,0 +1,36 @@
+{
+  "name": "ant-design-blazor",
+  "version": "0.1.0",
+  "description": "Ant Design Blazor 组件多用法技能库",
+  "author": {
+    "name": "Ant Design Blazor Contributors",
+    "url": "https://github.com/ant-design-blazor"
+  },
+  "homepage": "https://antblazor.com/",
+  "repository": "https://github.com/ant-design-blazor/ant-design-blazor",
+  "license": "MIT",
+  "keywords": [
+    "ant-design-blazor",
+    "blazor",
+    "razor",
+    "components",
+    "skills"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Ant Design Blazor Components",
+    "shortDescription": "包含 65 个组件及其多种关键 Razor 用法",
+    "longDescription": "面向 Ant Design Blazor 组件开发的技能库。每个组件对应一个独立技能，并内置基础、状态、绑定、事件、模板及代表性高级模式的关键代码。",
+    "developerName": "Ant Design Blazor Contributors",
+    "category": "Developer Tools",
+    "capabilities": [
+      "Write"
+    ],
+    "websiteURL": "https://antblazor.com/",
+    "defaultPrompt": [
+      "使用合适的 Ant Design Blazor 组件实现这个界面。",
+      "比较该组件的不同用法并生成 Razor 代码。",
+      "检查并改进这段 Ant Design Blazor 组件代码。"
+    ]
+  }
+}
