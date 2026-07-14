@@ -3,19 +3,23 @@
 // See the LICENSE file in the project root for more information.
 
 using System.Threading.Tasks;
+using AntDesign.JsInterop;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.JSInterop;
 
 namespace AntDesign
 {
-    public partial class ImagePreview
+    public partial class ImagePreview : System.IDisposable
     {
         [Parameter]
         public ImageRef ImageRef { get; set; }
 
         [Inject]
         protected IJSRuntime Js { get; set; }
+
+        [Inject]
+        private IDomEventListener DomEventListener { get; set; }
 
         private ElementReference _previewImg;
         private double _zoomOutTimes = 1;
@@ -58,6 +62,24 @@ namespace AntDesign
             _rotateTimes--;
         }
 
+        private async Task HandleKeyDown(KeyboardEventArgs keyboardEventArgs)
+        {
+            if (keyboardEventArgs.Key == "ArrowLeft")
+            {
+                ImageRef.SwitchTo(ImageRef.CurrentIndex - 1);
+            }
+            else if (keyboardEventArgs.Key == "ArrowRight")
+            {
+                ImageRef.SwitchTo(ImageRef.CurrentIndex + 1);
+            }
+            else
+            {
+                return;
+            }
+
+            await InvokeAsync(StateHasChanged);
+        }
+
         private async Task WeelHandZoom(WheelEventArgs wheelEventArgs)
         {
             _left = await Js.InvokeAsync<string>(JSInteropConstants.GetStyle, _previewImg, "left");
@@ -93,8 +115,17 @@ namespace AntDesign
         {
             if (firstRender)
             {
+                if (ImageRef.ImageCount > 1)
+                {
+                    DomEventListener.AddShared<KeyboardEventArgs>("document", "keydown", HandleKeyDown);
+                }
                 await Js.InvokeVoidAsync(JSInteropConstants.ImgDragAndDrop, _previewImg);
             }
+        }
+
+        public void Dispose()
+        {
+            DomEventListener?.Dispose();
         }
     }
 }
