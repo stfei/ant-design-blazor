@@ -2,7 +2,7 @@
 
 <Dialog Config="@GetDialogOptions()" Visible="@_visible">
     <ChildContent>
-        <div class="ant-image-preview-img-wrapper" @onwheel="WeelHandZoom"
+        <div class="ant-image-preview-img-wrapper @_switchAnimationClass" @onwheel="WeelHandZoom"
              style="font-size:0; position: relative; height: 100%; width: 100%;">
             <img id="preview-img" @ref="_previewImg" class="ant-image-preview-img" src="@ImageRef.ImageSrc"
                  style="position: absolute; left: @_left; top: @_top; transform: translate(-50%, -50%) scale3d(@_zoomOutTimes, @_zoomOutTimes, 1) rotate(@(90*_rotateTimes)deg);">
@@ -10,10 +10,10 @@
 
         @if (ImageRef.ImageCount > 1)
         {
-            <div class="ant-image-preview-switch-left @(ImageRef.CurrentIndex==0?"ant-image-preview-switch-left-disabled":"")" @onclick="()=>ImageRef.SwitchTo(ImageRef.CurrentIndex-1)" @onclick:stopPropagation>
+            <div class="ant-image-preview-switch-left @(ImageRef.CurrentIndex==0?"ant-image-preview-switch-left-disabled":"")" @onclick="()=>SwitchTo(ImageRef.CurrentIndex-1)" @onclick:stopPropagation>
                 <Icon Type="left" />
             </div>
-            <div class="ant-image-preview-switch-right @(ImageRef.CurrentIndex==ImageRef.ImageCount-1?"ant-image-preview-switch-right-disabled":"")" @onclick="()=>ImageRef.SwitchTo(ImageRef.CurrentIndex+1)" @onclick:stopPropagation>
+            <div class="ant-image-preview-switch-right @(ImageRef.CurrentIndex==ImageRef.ImageCount-1?"ant-image-preview-switch-right-disabled":"")" @onclick="()=>SwitchTo(ImageRef.CurrentIndex+1)" @onclick:stopPropagation>
                 <Icon Type="right" />
             </div>
         }

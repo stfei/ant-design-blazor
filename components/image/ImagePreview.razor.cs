@@ -27,6 +27,7 @@ namespace AntDesign
         private bool _visible = true;
         private string _left = "50%";
         private string _top = "50%";
+        private string _switchAnimationClass;
 
 
         private async Task HandleClose()
@@ -62,15 +63,28 @@ namespace AntDesign
             _rotateTimes--;
         }
 
+        private void SwitchTo(int index)
+        {
+            if (index < 0 || index >= ImageRef.ImageCount || index == ImageRef.CurrentIndex)
+            {
+                return;
+            }
+
+            var direction = index > ImageRef.CurrentIndex ? "left" : "right";
+            _zoomOutTimes = 1;
+            _switchAnimationClass = $"ant-image-preview-img-wrapper-switch-{direction}-{index % 2}";
+            ImageRef.SwitchTo(index);
+        }
+
         private async Task HandleKeyDown(KeyboardEventArgs keyboardEventArgs)
         {
             if (keyboardEventArgs.Key == "ArrowLeft")
             {
-                ImageRef.SwitchTo(ImageRef.CurrentIndex - 1);
+                SwitchTo(ImageRef.CurrentIndex - 1);
             }
             else if (keyboardEventArgs.Key == "ArrowRight")
             {
-                ImageRef.SwitchTo(ImageRef.CurrentIndex + 1);
+                SwitchTo(ImageRef.CurrentIndex + 1);
             }
             else
             {
